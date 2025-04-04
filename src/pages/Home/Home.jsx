@@ -22,7 +22,7 @@ export default function Home() {
       setNotes(Array.isArray(data?.notes) ? data.notes : []);
     } catch (error) {
       console.error('Error fetching notes:', error);
-      setError('Failed to load notes. Please try again.');
+      // setError('No notes have been created yet.');
       setNotes([]);
     } finally {
       setLoading(false);

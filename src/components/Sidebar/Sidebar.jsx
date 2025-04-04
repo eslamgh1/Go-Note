@@ -64,9 +64,9 @@ const logOutFn = ()=>{
 
   return (
     <>
-      <div className="bg-yellow-500 w-20 dark:bg-gray-800 text-gray-900 dark:text-white h-screen fixed transition-all duration-300 border-r border-gray-300 dark:border-gray-700 -3xl bg-transparent ease-in-out flex flex-col justify-between">
+      <div className="bg-yellow-400 w-20 dark:bg-gray-800 text-gray-900 dark:text-white h-screen fixed transition-all duration-300 border-r border-gray-300 dark:border-gray-700 -3xl bg-transparent ease-in-out flex flex-col justify-between">
         <div className="top-bar">
-          <div className="bg-yellow-600 p-4 border-b border-gray-300 dark:border-gray-700">
+          <div className="bg-yellow-500 p-4 border-b border-gray-300 dark:border-gray-700">
             <div className="text-center text-base font-bold">Docket</div>
           </div>
           <nav className="mt-4 space-y-4 flex flex-col justify-around">
