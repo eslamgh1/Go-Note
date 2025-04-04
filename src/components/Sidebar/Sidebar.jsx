@@ -4,7 +4,7 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import { RiLoginCircleLine } from "react-icons/ri";
 import { FaCirclePlus } from "react-icons/fa6";
 import { TbLogout2 } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../context/AuthContext";
 import {modalContext} from '../../context/ModalContext';
 
@@ -14,6 +14,16 @@ export default function Sidebar() {
   const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode"));
   const { loginUserFn, token, setToken } = useContext(authContext);
   const { showModal , setShowModal ,setEditingNote ,editingNote } = useContext(modalContext);
+  const navigate = useNavigate()
+  
+
+
+const logOutFn = ()=>{
+  setToken("");
+  localStorage.removeItem("userToken")
+  navigate("/login")
+
+}
 
   useEffect(() => {
     if (darkMode) {
@@ -92,7 +102,7 @@ export default function Sidebar() {
           <div className="group relative">
             {token && (
               <>
-                <button className="block py-3 px-4 w-full mx-auto hover:bg-gray-300 dark:hover:bg-gray-700">
+                <button onClick={()=>logOutFn()} className="block py-3 px-4 w-full mx-auto hover:bg-gray-300 dark:hover:bg-gray-700">
                   <TbLogout2 className="text-2xl mx-auto" />
                   <span className="absolute z-50 left-full ml-2 top-1/2 -translate-y-1/2 bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     Logout

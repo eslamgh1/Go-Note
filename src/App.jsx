@@ -9,7 +9,7 @@ import AuthContext from "./context/AuthContext";
 import ModalContext from "./context/ModalContext";
 import NoteContext from "./context/NoteContext";
 
-
+import ProtectedRoutes from"./components/ProtectedRoutes/ProtectedRoutes";
 
 function App() {
   let myrouter = createBrowserRouter([
@@ -17,7 +17,7 @@ function App() {
       path: "",
       element: <Layout />,
       children: [
-        { index: true, element: <Home /> },
+        { index: true, element: <ProtectedRoutes><Home /></ProtectedRoutes>  },
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
         { path: "home", element: <Home /> },
