@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { schema } from '@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js';
 import { z } from "zod";
 import NoteContext, { noteContext } from '../../context/NoteContext';
-
+import Swal from 'sweetalert2';
 
 
 export default function Modal({getUserNotes , editingNote }) {
@@ -32,6 +32,16 @@ const  addNote = async (values)=>{
       const {data} = await addNoteFn(values)
       console.log(data);
     }
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: `${editingNote ?"Note is Updated successfully":" Note is Added successfully"}`,
+      showConfirmButton: false,
+      timer: 1500
+    });
+  
+
     
     setShowModal(false);
     getUserNotes();

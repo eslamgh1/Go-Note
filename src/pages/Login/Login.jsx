@@ -6,7 +6,9 @@ import { GiNotebook } from "react-icons/gi";
 import { authContext } from '../../context/AuthContext';
 import { set, z } from 'zod';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from "@hookform/resolvers/zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import Swal from 'sweetalert2';
+
 
 export default function Login() {
 
@@ -28,6 +30,13 @@ export default function Login() {
     try {
       const { data } = await loginUserFn(values)
       console.log(data);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "login successful",
+        showConfirmButton: false,
+        timer: 1500
+      });
       setIsLoading(false)
       setTimeout(() => {
         navigate("../Home")

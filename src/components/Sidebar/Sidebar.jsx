@@ -7,6 +7,8 @@ import { TbLogout2 } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../context/AuthContext";
 import {modalContext} from '../../context/ModalContext';
+import Swal from 'sweetalert2';
+
 
 
 export default function Sidebar() {
@@ -14,14 +16,37 @@ export default function Sidebar() {
   const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode"));
   const { loginUserFn, token, setToken } = useContext(authContext);
   const { showModal , setShowModal ,setEditingNote ,editingNote } = useContext(modalContext);
+
   const navigate = useNavigate()
+  
   
 
 
 const logOutFn = ()=>{
+  Swal.fire({
+    title: "Are you sure?",
+    text: "Do you want to logout?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, Log out!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      
   setToken("");
   localStorage.removeItem("userToken")
   navigate("/login")
+
+      Swal.fire({
+        title: "You logged out",
+        text: "Success => You logged out ",
+        icon: "success"
+      });
+    }
+  });
+
+
 
 }
 
