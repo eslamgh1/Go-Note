@@ -64,9 +64,9 @@ export default function Home() {
 
   return (
     <>
-      <section className='p-10'>
-        <h1 className='text-3xl pt-2 font-bold mb-10 dark:text-gray-100'>Notessssssssss</h1>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <section className='p-10 bg-amber-200'>
+        <h1 className='text-3xl pt-2 font-bold mb-10 dark:text-black-100'>My Notes</h1>
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 bg-amber-200">
           {notes?.map((note) => {
             return <div key={note._id} className="w-full h-64 flex flex-col justify-between bg-gray-300 dark:bg-gray-700 dark:border-gray-700 rounded-lg border border-gray-300 mb-6 py-5 px-4">
               <div>

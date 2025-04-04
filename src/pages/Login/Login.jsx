@@ -51,7 +51,7 @@ export default function Login() {
 
     return (
         <>
-            <section className="flex items-center justify-center min-h-screen p-5 md:p-0">
+            <section className="flex items-center justify-center min-h-screen p-5 md:p-0 bg-amber-200">
                 <div className="w-full max-w-xl p-8 bg-white rounded-2xl shadow-lg dark:bg-gray-800 dark:border dark:border-gray-700">
                     <div className="flex justify-center mb-6">
                         <div className="w-14 h-14 bg-gray-800 rounded-full flex items-center justify-center dark:bg-gray-700">
