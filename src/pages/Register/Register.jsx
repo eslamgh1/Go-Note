@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { GiNotebook } from 'react-icons/gi'
 import { HiOutlineCalendar, HiOutlineMail, HiOutlinePhone, HiOutlineUser } from 'react-icons/hi'
@@ -7,8 +7,8 @@ import { useForm } from 'react-hook-form'
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { authContext } from '../../context/AuthContext'
-
-
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2';
 
 // react Hook Form 
 // Zod for vaildation
@@ -18,6 +18,7 @@ export default function Register() {
 
   const { registerUserFn } = useContext(authContext)
   const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate()
 
   const schema = z.object({
     name: z.string().min(3, "Name must be at least 3 characters").max(12, "Name must be less than 12 characters"),
@@ -30,23 +31,74 @@ export default function Register() {
 
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: "all", resolver: zodResolver(schema) })
 
-
   const registerUser = async (values) => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const { data } = await registerUserFn(values)
-      console.log(data);
-      setIsLoading(false)
-
-    } catch (errors) {
-      console.log(errors)
-      setIsLoading(false)
-
+      const { data } = await registerUserFn(values);
+      
+      // Success message
+      await Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful!',
+        text: 'You will be redirected to login page shortly',
+        timer: 1500,
+        showConfirmButton: false
+      });
+  
+      setIsLoading(false);
+      navigate("/login");
+  
+    } catch (error) {
+      setIsLoading(false);
+      
+      // Handle duplicate email error (assuming your API returns status 409 for conflicts)
+      if (error.response?.status === 409) {
+        await Swal.fire({
+          icon: 'error',
+          title: 'Registration Failed',
+          text: 'This email is already registered. Please use a different email or login.',
+          confirmButtonColor: '#3085d6'
+        });
+      } 
+      // Handle other errors
+      else {
+        const errorMessage = error.response?.data?.message || 
+                           'Email is Already Registered';
+        
+        await Swal.fire({
+          icon: 'error',
+          title: 'Registration Error',
+          text: errorMessage,
+          confirmButtonColor: '#3085d6'
+        });
+      }
     }
+  };
+  // const registerUser = async (values) => {
+  //   setIsLoading(true)
+  //   try {
+  //     const { data } = await registerUserFn(values)
+  //     console.log(data);
+  //     setIsLoading(false)
+  //     setTimeout(() => {
+      
+  //       navigate("../login")
+  //     }, 1500);
 
-  }
+  //   } catch (errors) {
+  
+  //     console.log(errors)
+  //     setIsLoading(false)
+    
 
+  //   }
 
+  // }
+
+  useEffect(() => {
+    document.title = "Register";
+  }, []);
+  
 
   return (
     <>
@@ -136,6 +188,8 @@ export default function Register() {
             Already have an account? <Link to={"/login"} className="text-gray-800 font-semibold cursor-pointer dark:text-gray-200 hover:underline">Sign In</Link>
           </p>
         </div>
+    
+
       </section>
     </>
   )

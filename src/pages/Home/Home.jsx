@@ -49,6 +49,11 @@ export default function Home() {
     getUserNotes();
   }, []);
 
+  useEffect(() => {
+    document.title = "Home";
+  }, []);
+  
+
   if (loading) {
     return (
       <div className="p-10">

@@ -10,6 +10,7 @@ import ModalContext from "./context/ModalContext";
 import NoteContext from "./context/NoteContext";
 
 import ProtectedRoutes from"./components/ProtectedRoutes/ProtectedRoutes";
+import Notfound from "./pages/NotFound/NotFound";
 
 function App() {
   let myrouter = createBrowserRouter([
@@ -21,6 +22,7 @@ function App() {
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
         { path: "home", element: <Home /> },
+        { path: "*", element: <Notfound/> },
       ],
     },
   ]);
