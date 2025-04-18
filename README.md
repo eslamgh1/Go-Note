@@ -4,7 +4,7 @@ I’m delighted to share my latest project — a Note App platform built with Re
  🔗 Check out the live demo: https://lnkd.in/dHWu3KKn
  💻 GitHub repository: https://lnkd.in/dSYV8bxX
 
-# hashtag#Key_Features: – Note App
+# Key_Features: – Note App
 1.User Authentication
  Secure sign-up and login functionality to protect users’ notes and personal data.
 2.Create, Edit & Delete Notes
@@ -36,4 +36,4 @@ I’m delighted to share my latest project — a Note App platform built with Re
 7.SweetAlert2
  Interactive modals for user alerts, confirmations, and feedback.
 
-hashtag#Javascript hashtag#React hashtag#Route hashtag#FrontEnd hashtag#JS hashtag#HTML hashtag#CSS hashtag#TAILWIND
+#Javascript #React #Route #FrontEnd #JS #HTML #CSS #TAILWIND
